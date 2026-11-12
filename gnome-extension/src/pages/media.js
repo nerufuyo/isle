@@ -63,7 +63,7 @@ class MediaPage extends Page {
         this.name = 'music';
         this._audio = audio;
         /** 'player', 'lyrics' or 'audio' (volume and outputs). */
-        this._mode = 'player';
+        this._mode = 'lyrics';
         this._tint = null;
         this._tintPath = null;
         // Each layout has its own copy of these; they update together.
