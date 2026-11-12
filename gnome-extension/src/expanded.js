@@ -41,6 +41,7 @@ const TABS = {
     apps: {icon: 'isle-apps', label: 'Apps'},
     devices: {icon: 'isle-headphones', label: 'Devices'},
     usage: {icon: 'isle-gauge', label: 'Usage'},
+    system: {icon: 'isle-bolt', label: 'System'},
 };
 /** How bright a tab's icon is: open, under the pointer, otherwise. */
 const TAB_OPACITY = {open: 255, hover: 200, idle: 140};

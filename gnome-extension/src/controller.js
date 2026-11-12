@@ -47,6 +47,7 @@ import {ShelfPage} from './pages/shelf.js';
 import {TasksPage} from './pages/tasks.js';
 import {TimerPage} from './pages/timer.js';
 import {UsagePage} from './pages/usage.js';
+import {SystemPage} from './pages/system.js';
 import {ReminderWatcher} from './reminders.js';
 import * as Theme from './theme.js';
 import {GREETING, InstalledApps, UNDO_MS, VoiceView, stopUnit, actionTypes, aiSettings, openSetUp, openSignIn, runActions, signInHint, stopPending, voiceContext} from './voice.js';
@@ -430,6 +431,7 @@ export class Controller {
             () => new AppsPage(this._daemon, this._appUsage, size),
             () => new DevicesPage(this._daemon, size),
             () => new UsagePage(this._daemon, size),
+            () => new SystemPage(this._daemon, size),
         ];
     }
 
