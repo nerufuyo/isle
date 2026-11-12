@@ -2,7 +2,7 @@
 /* Copyright (C) 2026 zickrian */
 
 /* Isle. island.js draws the island black; this styles what sits on it (see docs/product-spec.md).
- * A dark palette: surfaces #1c1c1e #2c2c2e #3a3a3c; accents #30d158 #ff453a #0a84ff #ff9f0a #5e5ce6. */
+ * A dark palette: surfaces #1c1c1e #2c2c2e #3a3a3c; accents #30d158 #ff453a #E8472B #ff9f0a #5e5ce6. */
 
 /* ── Shared ───────────────────────────────────────────── */
 
@@ -58,9 +58,9 @@
 .isle-pill-small:active { background-color: #48484a; }
 
 /* An alert's one thing to do now (Join), in the accent colour. */
-.isle-pill-accent { background-color: #0a84ff; }
-.isle-pill-accent:hover { background-color: #2b95ff; }
-.isle-pill-accent:active { background-color: #0071e3; }
+.isle-pill-accent { background-color: #E8472B; }
+.isle-pill-accent:hover { background-color: #F2603F; }
+.isle-pill-accent:active { background-color: #C93A20; }
 
 .isle-art { background-color: #2c2c2e; }
 .isle-art-placeholder { color: rgba(255, 255, 255, 0.4); }
@@ -88,7 +88,7 @@
   padding: 8px 14px;
   border: none;
   background-color: #1c1c1e;
-  caret-color: #0a84ff;
+  caret-color: #E8472B;
   selection-background-color: rgba(10, 132, 255, 0.5);
   selected-color: #ffffff;
 }
@@ -162,8 +162,8 @@
 
 /* Each side's padding toward the clock is its gap to it; compact.js makes both sides as wide, and sets
  * the room at the ends from the island's height. */
-.isle-compact-start { padding-right: 30px; }
-.isle-compact-end { padding-left: 30px; }
+.isle-compact-start { padding-right: 44px; }
+.isle-compact-end { padding-left: 44px; }
 
 .isle-compact-clock { font-size: 17px; font-weight: 600; letter-spacing: -0.2px; }
 .isle-compact-clock-box { spacing: 6px; }
@@ -202,7 +202,7 @@
 
 .isle-privacy-dot.camera { background-color: #34c759; }
 .isle-privacy-dot.microphone { background-color: #ff9f0a; }
-.isle-privacy-dot.screenShare { background-color: #0a84ff; }
+.isle-privacy-dot.screenShare { background-color: #E8472B; }
 /* Sharing the Shelf with a phone: violet, the bot's glow; no other dot is. */
 .isle-privacy-dot.phone { background-color: #bf5af2; }
 
@@ -1654,3 +1654,91 @@
 #isleIsland.isle-glass-dark .isle-mode-toggle.on,
 #isleIsland.isle-glass-dark .isle-cal-world-toggle:checked,
 #isleIsland.isle-glass-dark .isle-dnd-toggle:checked { box-shadow: none; }
+
+/* ── Quick settings, simple Isle look ─────────────────────── */
+.quick-settings, .popup-menu-content.quick-settings, StBoxLayout.quick-settings { background: #000000 !important; background-color: #000000 !important; border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 22px !important; padding: 12px !important; box-shadow: none !important; -arrow-background-color: #000000; -arrow-border-color: rgba(255,255,255,0.08); -arrow-border-width: 1px; -arrow-border-radius: 22px; -arrow-base: 0px; -arrow-rise: 0px; }
+.quick-settings-grid { spacing-rows: 8px; spacing-columns: 8px; }
+/* the outer wrapper of toggles with a submenu draws a capsule: remove it */
+.quick-settings .quick-menu-toggle { background: none !important; background-color: transparent !important; box-shadow: none !important; border: none !important; }
+/* every toggle: quiet dark tile, dim text */
+.quick-settings .quick-toggle, .quick-settings .quick-menu-toggle .quick-toggle, .quick-settings StButton.quick-toggle { background: #1c1c1e !important; background-color: #1c1c1e !important; color: #8e8e93; border-radius: 14px !important; box-shadow: none !important; }
+.quick-settings .quick-toggle:hover, .quick-settings .quick-menu-toggle .quick-toggle:hover { background: #2c2c2e !important; background-color: #2c2c2e !important; }
+/* on: slightly lighter tile, white text, accent icon (Isle keeps its accent for the icon, not the whole tile) */
+.quick-settings .quick-toggle:checked, .quick-settings .quick-menu-toggle .quick-toggle:checked, .quick-settings StButton.quick-toggle:checked { background: #2c2c2e !important; background-color: #2c2c2e !important; color: #ffffff; }
+.quick-settings .quick-toggle:checked .quick-toggle-icon, .quick-settings .quick-menu-toggle .quick-toggle:checked .quick-toggle-icon { color: #E8472B !important; background-color: transparent !important; }
+.quick-settings .quick-toggle .quick-toggle-icon { background-color: transparent !important; min-width: 0 !important; min-height: 0 !important; }
+.quick-settings .quick-menu-toggle .quick-toggle:ltr, .quick-settings .quick-menu-toggle .quick-toggle:ltr:last-child { border-radius: 14px 0 0 14px !important; }
+.quick-settings .quick-menu-toggle .quick-toggle-arrow, .quick-settings .quick-menu-toggle .quick-toggle-arrow:ltr { background: #1c1c1e !important; background-color: #1c1c1e !important; color: #8e8e93; border-radius: 0 14px 14px 0 !important; box-shadow: none !important; margin: 0 0 0 1px !important; }
+.quick-settings .quick-menu-toggle .quick-toggle-arrow:checked { background: #2c2c2e !important; background-color: #2c2c2e !important; color: #ffffff; }
+.quick-settings .quick-slider { background: #1c1c1e !important; background-color: #1c1c1e !important; border-radius: 14px !important; box-shadow: none !important; }
+.quick-settings .icon-button { background: #1c1c1e !important; background-color: #1c1c1e !important; border-radius: 12px !important; box-shadow: none !important; }
+/* shared popup surface: same black card everywhere */
+.popup-menu-content, .popup-menu-boxpointer .popup-menu-content { background: #000000 !important; background-color: #000000 !important; border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 22px !important; box-shadow: none !important; }
+/* quick settings card background lives on the popup's boxpointer */
+.popup-menu-boxpointer { -arrow-background-color: #000000; -arrow-border-color: rgba(255,255,255,0.08); -arrow-border-width: 1px; -arrow-border-radius: 22px; -arrow-rise: 0px; }
+.quick-settings, StBoxLayout.quick-settings { margin: 0 !important; }
+/* ── Quick settings: minimal and compact ─────────────────── */
+.quick-settings, StBoxLayout.quick-settings { padding: 8px !important; margin: 0 !important; border-radius: 18px !important; }
+.popup-menu-boxpointer { -arrow-border-radius: 18px; }
+.quick-settings-grid { spacing-rows: 5px; spacing-columns: 5px; }
+.quick-settings .quick-toggle, .quick-settings .quick-menu-toggle .quick-toggle { min-height: 0 !important; padding: 6px 8px !important; border-radius: 11px !important; }
+.quick-settings .quick-menu-toggle .quick-toggle { min-width: 0 !important; max-width: none !important; border-radius: 11px 0 0 11px !important; }
+.quick-settings .quick-menu-toggle .quick-toggle-arrow, .quick-settings .quick-menu-toggle .quick-toggle-arrow:ltr { padding: 0 4px; min-width: 0 !important; border-radius: 0 11px 11px 0 !important; }
+.quick-settings .quick-toggle > StBoxLayout { spacing: 6px; padding: 0 !important; }
+.quick-settings .quick-toggle .quick-toggle-icon { icon-size: 13px !important; }
+.quick-settings .quick-toggle .quick-toggle-title { font-size: 12px; font-weight: 600; }
+.quick-settings .quick-toggle StBoxLayout > .quick-toggle-subtitle { font-size: 10px; }
+.quick-settings .quick-slider { padding: 0.35em 0.5em !important; border-radius: 11px !important; }
+.quick-settings .quick-slider .slider { -barlevel-height: 4px; }
+.quick-settings .icon-button { padding: 5px !important; border-radius: 10px !important; }
+.quick-settings .icon-button StIcon { icon-size: 14px !important; }
+/* fixed pixel width so the card shrinks to fit (em units were ignored by the theme) */
+.quick-settings, StBoxLayout.quick-settings { width: 288px !important; min-width: 0 !important; max-width: 288px !important; }
+.quick-settings-grid { min-width: 0 !important; width: 272px; }
+
+/* equal tiles: same height, same width (both columns share the card evenly), no subtitle */
+.quick-settings .quick-toggle, .quick-settings .quick-menu-toggle .quick-toggle { min-height: 44px !important; height: 44px !important; padding-top: 0 !important; padding-bottom: 0 !important; }
+.quick-settings .quick-menu-toggle .quick-toggle-arrow { min-height: 44px !important; height: 44px !important; padding: 0 6px; }
+.quick-settings .quick-toggle StBoxLayout > .quick-toggle-subtitle, .quick-settings .quick-toggle-subtitle { font-size: 0px; height: 0; min-height: 0; max-height: 0; margin: 0; padding: 0; }
+.quick-settings .quick-toggle > StBoxLayout { spacing: 7px; }
+.quick-settings .quick-toggle { padding-left: 10px !important; padding-right: 8px !important; }
+.quick-settings .quick-menu-toggle { min-height: 44px !important; height: 44px !important; }
+.quick-settings .quick-toggle { min-height: 44px !important; height: 44px !important; }
+.quick-settings .quick-toggle, .quick-settings .quick-menu-toggle, .quick-settings .quick-menu-toggle .quick-toggle, .quick-settings .quick-menu-toggle .quick-toggle-arrow { max-height: 44px !important; min-height: 44px !important; height: 44px !important; }
+.quick-settings .quick-toggle > StBoxLayout, .quick-settings .quick-toggle-icon { max-height: 44px; margin-top: 0; margin-bottom: 0; }
+.quick-settings .quick-toggle:insensitive, .quick-settings .quick-toggle:disabled { padding-top: 0 !important; padding-bottom: 0 !important; margin: 0 !important; border-width: 0 !important; min-height: 44px !important; height: 44px !important; max-height: 44px !important; }
+.quick-settings .quick-toggle StBoxLayout, .quick-settings .quick-toggle StIcon, .quick-settings .quick-toggle StLabel { min-height: 0 !important; max-height: 44px !important; margin-top: 0 !important; margin-bottom: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; }
+.quick-settings .quick-toggle, .quick-settings .quick-toggle:insensitive { border: none !important; border-width: 0 !important; -st-natural-height: 44px; }
+.quick-settings .quick-toggle .quick-toggle-icon { min-width: 0 !important; min-height: 0 !important; }
+
+/* subtitles stay hidden (must come last) */
+.quick-settings .quick-toggle StLabel.quick-toggle-subtitle, .quick-settings .quick-toggle StBoxLayout > .quick-toggle-subtitle { font-size: 0px !important; height: 0 !important; min-height: 0 !important; max-height: 0 !important; margin: 0 !important; padding: 0 !important; }
+/* every direct child of the grid (including Night Light) gets the same box */
+.quick-settings-grid > .quick-toggle, .quick-settings-grid > .quick-menu-toggle { min-height: 44px !important; max-height: 44px !important; height: 44px !important; margin-top: 0 !important; margin-bottom: 0 !important; }
+.quick-settings-grid > .quick-toggle, .quick-settings-grid > StButton { padding-top: 0 !important; padding-bottom: 0 !important; border-width: 0 !important; }
+/* gap between the top bar and popup cards */
+.popup-menu-boxpointer, .candidate-popup-boxpointer { -boxpointer-gap: 8px; }
+/* ── Split top bar: a pill on the left, a pill on the right, the middle stays clear for the island ── */
+#panel, #panel.isle-panel, #panel.isle-glass-bar, #panel.isle-black-bar, #panel.isle-panel.isle-black-bar { background: transparent !important; background-color: transparent !important; box-shadow: none !important; border-image: none !important; }
+#panel.isle-panel #panelLeft, #panel.isle-panel #panelRight { background-color: #000000 !important; border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; margin: 3px 10px; padding: 0 4px; }
+#panel.isle-panel #panelLeft .panel-button, #panel.isle-panel #panelRight .panel-button { text-shadow: none; icon-shadow: none; }
+/* hang from the top edge like the island: no gap above, rounded bottom corners only */
+#panel.isle-panel #panelLeft, #panel.isle-panel #panelRight { margin: 0 10px !important; border-top-width: 0 !important; border-radius: 0 0 14px 14px !important; }
+/* attach to the screen sides: the left pill joins the left edge, the right pill the right edge; only the inner bottom corner is rounded */
+#panel.isle-panel #panelLeft { margin: 0 !important; border-left-width: 0 !important; border-radius: 0 0 14px 0 !important; padding-left: 10px; }
+#panel.isle-panel #panelRight { margin: 0 !important; border-right-width: 0 !important; border-radius: 0 0 0 14px !important; padding-right: 10px; }
+/* left pill hidden (the workspace dots) */
+#panel.isle-panel #panelLeft { background-color: transparent !important; border-width: 0 !important; padding: 0 !important; margin: 0 !important; min-width: 0 !important; width: 0 !important; }
+#panel.isle-panel #panelLeft .panel-button, #panel.isle-panel #panelActivities { opacity: 0 !important; width: 0 !important; min-width: 0 !important; max-width: 0 !important; padding: 0 !important; margin: 0 !important; border-width: 0 !important; -natural-hpadding: 0px; -minimum-hpadding: 0px; }
+#panel.isle-panel .panel-button#panelActivities .workspace-dot, #panel.isle-panel .panel-button#panelActivities .workspace-dots, #panel.isle-panel #panelLeft .workspace-dot, #panel.isle-panel #panelLeft .workspace-dots { background-color: transparent !important; width: 0 !important; height: 0 !important; min-width: 0 !important; min-height: 0 !important; margin: 0 !important; padding: 0 !important; border-radius: 0; box-shadow: none !important; }
+#panel.isle-panel .panel-button#panelActivities, #panel.isle-panel .panel-button#panelActivities:hover, #panel.isle-panel .panel-button#panelActivities:active { background-color: transparent !important; box-shadow: none !important; }
+
+/* ── System page (local addition) ─────────────────────────── */
+.isle-sys-grid { spacing: 14px; padding: 2px 0 0 0; }
+.isle-sys-row { spacing: 22px; }
+.isle-sys-cell { spacing: 6px; }
+.isle-sys-top { spacing: 8px; }
+.isle-sys-name { font-size: 12px; color: rgba(255, 255, 255, 0.6); }
+.isle-sys-value { font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, 0.94); }
+.isle-sys-track { height: 4px; border-radius: 2px; background-color: rgba(255, 255, 255, 0.1); }
+.isle-sys-fill { height: 4px; border-radius: 2px; background-color: #E8472B; }
