@@ -946,7 +946,8 @@ const PAGES = [
 /** The pages a shortcut of their own may open from anywhere, as the controller's SHORTCUT_PAGES, with their names. */
 const SHORTCUT_PAGES = [...PAGES.map(([name, title, iconName]) => [name, title, iconName]),
     ['apps', 'Apps', 'view-app-grid-symbolic'], ['devices', 'Devices', 'bluetooth-active-symbolic'],
-    ['usage', 'AI Usage', 'power-profile-performance-symbolic']];
+    ['usage', 'AI Usage', 'power-profile-performance-symbolic'],
+    ['system', 'System', 'utilities-system-monitor-symbolic']];
 
 /** A shortcut per page, none at first: GNOME's own shortcuts keep their keys (see `shortcutRow`). */
 function shortcutsGroup(settings) {
