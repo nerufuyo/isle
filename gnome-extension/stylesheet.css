@@ -1746,3 +1746,10 @@
 /* right pill hidden: its stats live on the System page, the status icons on Quick Settings (Super+S) */
 #panel.isle-panel #panelRight { background-color: transparent !important; border-width: 0 !important; padding: 0 !important; margin: 0 !important; min-width: 0 !important; width: 0 !important; }
 #panel.isle-panel #panelRight .panel-button, #panel.isle-panel #panelRight StBoxLayout, #panel.isle-panel #panelRight StLabel, #panel.isle-panel #panelRight StIcon { width: 0 !important; min-width: 0 !important; max-width: 0 !important; padding: 0 !important; margin: 0 !important; border-width: 0 !important; -natural-hpadding: 0px; -minimum-hpadding: 0px; font-size: 0px; icon-size: 0px !important; background-color: transparent !important; box-shadow: none !important; }
+
+/* ── Power page (local addition) ──────────────────────────── */
+.isle-power-row { spacing: 8px; padding: 6px 0 12px 0; }
+.isle-power-heading { padding-top: 2px; }
+.isle-power-action, .isle-power-switch { text-align: center; }
+.isle-power-danger { color: #E8472B; }
+.isle-power-on { background-color: #E8472B; color: #ffffff; }
