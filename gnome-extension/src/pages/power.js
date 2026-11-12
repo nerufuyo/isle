@@ -27,6 +27,24 @@ const SWITCHES = [
     ['Night Light', 'org.gnome.settings-daemon.plugins.color', 'night-light-enabled', v => v === true, on => on],
 ];
 
+/** Whether a radio of this rfkill type (bluetooth, wlan) is switched on; null when the PC has none. */
+function radioOn(type) {
+    let found = false;
+    for (let i = 0; i < 16; i++) {
+        const dir = `/sys/class/rfkill/rfkill${i}`;
+        try {
+            const [ok, kind] = GLib.file_get_contents(`${dir}/type`);
+            if (!ok || new TextDecoder().decode(kind).trim() !== type)
+                continue;
+            found = true;
+            const [, soft] = GLib.file_get_contents(`${dir}/soft`);
+            if (new TextDecoder().decode(soft).trim() === '0')
+                return true;
+        } catch (_e) { /* no such rfkill */ }
+    }
+    return found ? false : null;
+}
+
 function settingsFor(schemaId) {
     const source = Gio.SettingsSchemaSource.get_default();
     return source?.lookup(schemaId, true) ? new Gio.Settings({schema_id: schemaId}) : null;
@@ -71,15 +89,41 @@ class PowerPage extends Page {
             button.x_expand = true;
             row.add_child(button);
         }
+        // Radios: only those this PC has (a desktop without Wi-Fi shows just Bluetooth).
+        this._radios = [];
+        for (const [text, type] of [['Wi-Fi', 'wlan'], ['Bluetooth', 'bluetooth']]) {
+            if (radioOn(type) === null)
+                continue;
+            const button = pillButton(text, 'isle-pill-small isle-power-switch', () => {
+                this._run(`rfkill ${radioOn(type) ? 'block' : 'unblock'} ${type}`, false);
+                this.later(`radio-${type}`, 500, () => this._syncRadios());
+            });
+            button.x_expand = true;
+            this._radios.push({type, button});
+            row.add_child(button);
+        }
+        this._syncRadios();
         this.add_child(row);
     }
 
-    _run(command) {
+    onActivate() {
+        this._syncRadios();
+    }
+
+    _syncRadios() {
+        for (const {type, button} of this._radios) {
+            button.set_style_class_name(
+                `isle-pill isle-pill-small isle-power-switch${radioOn(type) ? ' isle-power-on' : ''}`);
+        }
+    }
+
+    _run(command, close = true) {
         try {
             GLib.spawn_command_line_async(command);
         } catch (e) {
             console.error(`Isle power: ${command}: ${e.message}`);
         }
-        this.emit('request-close');
+        if (close)
+            this.emit('request-close');
     }
 });
