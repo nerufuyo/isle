@@ -95,6 +95,14 @@ export class TopBar extends Signals.EventEmitter {
         const panelBox = Main.layoutManager.panelBox;
         this._barMoved = ['notify::x', 'notify::y'].map(signal => panelBox.connect(signal, () => this._onBarMoved()));
 
+        // The bar floats over the windows: maximized ones run up to the top of the screen, the island on top of them.
+        this._barTracked = Main.layoutManager._trackedActors?.find(t => t.actor === panelBox) ?? null;
+        this._barStrutWas = this._barTracked?.affectsStruts;
+        if (this._barTracked) {
+            this._barTracked.affectsStruts = false;
+            Main.layoutManager._queueUpdateRegions();
+        }
+
         // GNOME's calendar shortcut (Super+V, Super+M) always opens the island, on the page Settings say (`superV`);
         // it used to fall to GNOME's menu, which never opened for the hidden clock (#50). No shortcut of Isle's own,
         // nothing in GNOME's settings. The hidden clock's menu is closed again should anything else open it.
@@ -351,6 +359,10 @@ export class TopBar extends Signals.EventEmitter {
         Main.panel.disconnect(this._styleChanged);
         this._unwatchWindows();
         this._barMoved.forEach(id => Main.layoutManager.panelBox.disconnect(id));
+        if (this._barTracked) {
+            this._barTracked.affectsStruts = this._barStrutWas;
+            Main.layoutManager._queueUpdateRegions();
+        }
         if (this._dragButtonWas === 0 && this._dragGesture.required_button === PRIMARY_BUTTON)
             this._dragGesture.required_button = 0;
         this._dateMenu.menu.disconnect(this._menuChanged);
